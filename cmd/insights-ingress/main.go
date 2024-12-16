@@ -107,6 +107,7 @@ func main() {
 		sub.With(identity.EnforceIdentityWithLogger(identityErrorLogFunc)).Get("/", lubDub)
 		sub.With(upload.ResponseMetricsMiddleware, identity.EnforceIdentityWithLogger(identityErrorLogFunc), middleware.Logger).Post("/upload", handler)
 		sub.With(identity.EnforceIdentityWithLogger(identityErrorLogFunc)).Get("/track/{requestID}", trackEndpoint)
+		sub.Get("/status", lubDub)
 	} else {
 		sub.Get("/", lubDub)
 		sub.With(upload.ResponseMetricsMiddleware, middleware.Logger).Post("/upload", handler)
